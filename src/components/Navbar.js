@@ -61,11 +61,14 @@ const Navbar = () => {
           <span className="brand-highlight">Moto</span>Guide
         </div>
         <div className="navbar-container">
-          {/* Left side - only Home and Featured */}
+          {/* Left side - Home always visible */}
           <div className="navbar-left navbar-links">
             <Link to="/" className={`nav-link ${isActive('/')}`}>
               {t('home')}
             </Link>
+          </div>
+          {/* Car Categories Dropdown */}
+          <div className="navbar-categories navbar-links">
             <div className={`car-categories ${carCategoriesOpen ? 'active' : ''}`}>
               <button
                 className="nav-link"
