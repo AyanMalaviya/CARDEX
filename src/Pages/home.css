@@ -119,27 +119,27 @@
 }
 
 .shop-now-btn {
-  background: linear-gradient(45deg, #ff3d3d, #ff0000) !important;
-  padding: 1.2rem 4rem !important;
-  font-size: 1.4rem !important;
-  text-transform: uppercase !important;
-  border-radius: 50px !important;
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3) !important;
-  border: 2px solid transparent !important;
-  letter-spacing: 1px !important;
-  font-weight: 600 !important;
+  background: linear-gradient(45deg, #ff3d3d, #ff0000) ;
+  padding: 1.2rem 4rem ;
+  font-size: 1.4rem ;
+  text-transform: uppercase ;
+  border-radius: 50px ;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) ;
+  box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3) ;
+  border: 2px solid transparent ;
+  letter-spacing: 1px ;
+  font-weight: 600 ;
 }
 
 .shop-now-btn:hover {
-  background: transparent !important;
-  border-color: #ff3d3d !important;
-  transform: translateY(-5px) scale(1.05) !important;
-  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4) !important;
+  background: transparent ;
+  border-color: #ff3d3d ;
+  transform: translateY(-5px) scale(1.05) ;
+  box-shadow: 0 8px 25px rgba(255, 0, 0, 0.4) ;
 }
 
 .shop-now-btn:active {
-  transform: translateY(2px) !important;
+  transform: translateY(2px) ;
 }
 
 .highlight {
@@ -147,16 +147,16 @@
 }
 
 .shop-now-btn {
-  background: #ff3d3d !important;
-  padding: 1rem 3rem !important;
-  font-size: 1.2rem !important;
-  text-transform: none !important;
-  border-radius: 5px !important;
-  transition: all 0.3s ease !important;
+  background: #ff3d3d ;
+  padding: 1rem 3rem ;
+  font-size: 1.2rem ;
+  text-transform: none ;
+  border-radius: 5px ;
+  transition: all 0.3s ease ;
 }
 
 .shop-now-btn:hover {
-  background: #ff5555 !important;
+  background: #ff5555 ;
   transform: translateY(-2px);
 }
 
@@ -293,15 +293,15 @@
 /* All slides: small and faded by default */
 .slider-section .slick-slide {
   transition: transform 0.4s cubic-bezier(0.87, 0.03, 0.41, 0.9), box-shadow 0.4s;
-  transform: scale(0.8) !important;
-  opacity: 0.7 !important;
+  transform: scale(0.8) ;
+  opacity: 0.7 ;
   z-index: 1;
 }
 
 /* Center slide: large and prominent */
 .slider-section .slick-center {
-  transform: scale(1.15) !important;
-  opacity: 1 !important;
+  transform: scale(1.15) ;
+  opacity: 1 ;
   z-index: 2;
   box-shadow: 0 8px 32px rgba(0,0,0,0.18);
 }
@@ -311,7 +311,7 @@
 .slider-section .slick-center .slide-image {
   border: 3px solid #e53935;
   border-radius: 16px;
-  opacity: 1 !important;
+  opacity: 1 ;
   box-shadow: 0 8px 30px rgba(255, 61, 61, 0.3);
 }
 
@@ -337,7 +337,7 @@
 .slider-section .slick-next {
   width: 40px;
   height: 40px;
-  background: rgba(255, 61, 61, 0.8) !important;
+  background: rgba(255, 61, 61, 0.8) ;
   border-radius: 50%;
   z-index: 2;
   transition: all 0.3s ease;
@@ -345,23 +345,23 @@
 
 .slider-section .slick-prev:hover,
 .slider-section .slick-next:hover {
-  background: #ff3d3d !important;
+  background: #ff3d3d ;
   transform: scale(1.1);
 }
 
 .slider-section .slick-prev {
-  left: 10% !important;
+  left: 10% ;
 }
 
 .slider-section .slick-next {
-  right: 10% !important;
+  right: 10% ;
 }
 
 /* Responsive: hide arrows on mobile */
 @media (max-width: 768px) {
   .slider-section .slick-prev,
   .slider-section .slick-next {
-    display: none !important;
+    display: none ;
   }
   .slider-section .slide-image {
     height: 300px;

@@ -4,11 +4,13 @@ import CarSlider from '../components/CarSlider';
 import { Button } from '@mui/material';
 import './home.css';
 import { useNavigate } from 'react-router-dom';
+import { useLanguage } from '../context/LanguageContext';
 
 const Home = () => {
   const sliderRef = useRef(null);
   const [showAllBrands, setShowAllBrands] = useState(false);
   const navigate = useNavigate();
+  const { t } = useLanguage();
 
   const handleExploreClick = () => {
     sliderRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -19,7 +21,8 @@ const Home = () => {
   };
 
   const handleBrandClick = (brandName) => {
-    navigate(`/brand/${brandName}`);
+    // Redirect to search page with brand name as query
+    navigate(`/search?query=${encodeURIComponent(brandName)}`);
   };
 
   const supercarImages = [
@@ -140,10 +143,10 @@ const Home = () => {
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-text-overlay">
-            <h1 className="hero-title">WELCOME TO MOTOGUIDE</h1>
-            <p className="hero-subtitle">Where Luxury Meets Speed</p>
+            <h1 className="hero-title">{t('welcomeTitle')}</h1>
+            <p className="hero-subtitle">{t('welcomeSubtitle')}</p>
             <p className="hero-description">
-              Experience the thrill of the world's most elite automotive machines, designed for performance and elegance.
+              {t('welcomeDescription') || "Experience the thrill of the world's most elite automotive machines, designed for performance and elegance."}
             </p>
             <Button 
               variant="contained" 
@@ -151,7 +154,7 @@ const Home = () => {
               onClick={handleExploreClick}
               className="explore-button"
             >
-              EXPLORE COLLECTION
+              {t('exploreCollection') || 'EXPLORE COLLECTION'}
             </Button>
           </div>
         </div>
@@ -159,11 +162,11 @@ const Home = () => {
       {/* CarSlider Section */}
       <section ref={sliderRef} className="slider-section">
         <CarSlider 
-          title="Supercar Collection" 
+          title={t('supercarCollection')}
           images={supercarImages} 
         />
         <CarSlider 
-          title="Luxurious Cars Collection" 
+          title={t('luxuryCollection')}
           images={luxuryCarImages} 
         />
       </section>
@@ -171,8 +174,8 @@ const Home = () => {
       {/* Shopping by Car Section */}
       <section className="car-brands-section">
         <div className="section-header">
-          <h2>Browse by brands?</h2>
-          <p>Choose A Brand.</p>
+          <h2>{t('browseByBrands') || 'Browse by brands?'}</h2>
+          <p>{t('chooseABrand') || 'Choose A Brand.'}</p>
         </div>
         <div className={`brands-grid ${showAllBrands ? 'show-all' : ''}`}>
           {carBrands.map((brand, index) => (
@@ -191,7 +194,7 @@ const Home = () => {
         </div>
         <div className="view-all-btn-wrapper">
           <button className="view-all" onClick={handleViewAll}>
-            {showAllBrands ? 'Show Less' : 'View All'}
+            {showAllBrands ? (t('showLess') || 'Show Less') : (t('viewAll') || 'View All')}
           </button>
         </div>
       </section>

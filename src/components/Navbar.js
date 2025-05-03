@@ -3,12 +3,14 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FiSun, FiMoon, FiSearch, FiMenu, FiGlobe } from 'react-icons/fi';
 import { useLanguage } from '../context/LanguageContext';
 import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
+import { carBrands } from '../data/FullCardata';
 import './Navbar.css';
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(true);
   const [searchActive, setSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [suggestions, setSuggestions] = useState([]);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [languageMenuOpen, setLanguageMenuOpen] = useState(false);
   const [carCategoriesOpen, setCarCategoriesOpen] = useState(false);
@@ -32,7 +34,20 @@ const Navbar = () => {
 
   const isActive = (path) => (location.pathname === path ? 'active' : '');
 
-  const handleSearchChange = (e) => setSearchQuery(e.target.value);
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    setSearchQuery(value);
+    // Suggest brands that match the input (case-insensitive)
+    if (value.trim().length > 0) {
+      const matches = carBrands
+        .map(b => typeof b === 'string' ? b : b.name) // handle array of strings or objects
+        .filter(name => name.toLowerCase().includes(value.toLowerCase()))
+        .slice(0, 5); // limit suggestions
+      setSuggestions(matches);
+    } else {
+      setSuggestions([]);
+    }
+  };
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -40,7 +55,15 @@ const Navbar = () => {
       navigate(`/search?query=${encodeURIComponent(searchQuery.trim())}`);
       setSearchActive(false);
       setSearchQuery('');
+      setSuggestions([]);
     }
+  };
+
+  const handleSuggestionClick = (brand) => {
+    setSearchQuery(brand);
+    setSuggestions([]);
+    navigate(`/search?query=${encodeURIComponent(brand)}`);
+    setSearchActive(false);
   };
 
   const handleSearchToggle = () => setSearchActive((prev) => !prev);
@@ -126,7 +149,7 @@ const Navbar = () => {
             </button>
 
             {searchActive && (
-              <form onSubmit={handleSearchSubmit} className="search-form active">
+              <form onSubmit={handleSearchSubmit} className="search-form active" autoComplete="off">
                 <input
                   type="text"
                   className="search-input"
@@ -135,6 +158,19 @@ const Navbar = () => {
                   onChange={handleSearchChange}
                   autoFocus
                 />
+                {suggestions.length > 0 && (
+                  <ul className="search-suggestions">
+                    {suggestions.map((brand, idx) => (
+                      <li
+                        key={idx}
+                        className="suggestion-item"
+                        onMouseDown={() => handleSuggestionClick(brand)}
+                      >
+                        {t(brand)}
+                      </li>
+                    ))}
+                  </ul>
+                )}
               </form>
             )}
 
@@ -175,18 +211,18 @@ const Navbar = () => {
                 className="nav-link login-btn"
                 onClick={handleLogout}
                 style={{ marginLeft: '10px' }}
-                title="Logout"
+                title={t('logout') || 'Logout'}
               >
-                Logout
+                {t('logout') || 'Logout'}
               </button>
             ) : (
               <Link
                 to="/login"
                 className="nav-link login-btn"
                 style={{ marginLeft: '10px' }}
-                title="Login"
+                title={t('login') || 'Login'}
               >
-                Login
+                {t('login') || 'Login'}
               </Link>
             )}
 

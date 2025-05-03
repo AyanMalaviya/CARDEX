@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import CarCard from './CarCard';
-import fullCarData from '../data/FullCardata'; // Adjust path as needed
+import { FullCardata }  from '../data/FullCardata';
 
 const SearchResults = () => {
   const location = useLocation();
@@ -11,13 +11,13 @@ const SearchResults = () => {
   const query = searchParams.get('query')?.toLowerCase() || '';
 
   // Filter cars based on the query matching the car name
-  const filteredResults = fullCarData.filter(car =>
+  const filteredResults = FullCardata.filter(car =>
     car.name.toLowerCase().includes(query)
   );
 
   if (filteredResults.length === 0) {
     return (
-      <div className="no-results">
+      <div className="no-results">  
         <h2>No cars found matching your search</h2>
       </div>
     );

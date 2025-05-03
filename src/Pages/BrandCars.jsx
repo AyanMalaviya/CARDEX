@@ -9,7 +9,9 @@ const BrandCars = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
 
-  const cars = brandCars[brandName] || [];
+  // Format brandName to match the keys in brandCars
+  const formattedBrand = brandName.toLowerCase().replace(/\s+/g, '');
+  const cars = brandCars[formattedBrand] || [];
 
   const handleCompareClick = (car) => {
     navigate('/compare', { state: { preSelectedCar: car } });
@@ -31,7 +33,7 @@ const BrandCars = () => {
               </div>
               <div className="car-info">
                 <h3 className="car-name">{car.name}</h3>
-                <p className="car-price">{car.price}</p>
+                <p className="car-price">{t('price')}: {car.price}</p>
                 <p className="car-description">{car.description}</p>
                 <button 
                   className="compare-button"
@@ -48,4 +50,4 @@ const BrandCars = () => {
   );
 };
 
-export default BrandCars; 
+export default BrandCars;
