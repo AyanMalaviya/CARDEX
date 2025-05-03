@@ -1,8 +1,15 @@
 import React from "react";
 import './Footer.css';
 import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
+import { useLanguage } from '../context/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
+  const tr = (key, fallback) => {
+    const value = t(key);
+    return value === key ? fallback : value;
+  };
+
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -10,27 +17,26 @@ const Footer = () => {
         <div className="footer-section">
           <h2 className="footer-title">MotoGuide</h2>
           <p className="footer-description">
-            Discover the power, comfort, and speed of the best cars on the market.
-            Your ultimate riding companion.
+            {tr('footerDescription', 'Discover the power, comfort, and speed of the best cars on the market. Your ultimate riding companion.')}
           </p>
         </div>
 
         {/* Quick Links */}
         <div className="footer-section">
-          <h3 className="footer-heading">Quick Links</h3>
+          <h3 className="footer-heading">{tr('quickLinks', 'Quick Links')}</h3>
           <ul className="footer-links">
-            <li><a href="/featured">Featured</a></li>
-            <li><a href="/highpower">High Power</a></li>
-            <li><a href="/highcomfort">High Comfort</a></li>
-            <li><a href="/compare">Compare Cars</a></li>
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/about">About Us</a></li>
+            <li><a href="/featured">{tr('featured', 'Featured')}</a></li>
+            <li><a href="/highpower">{tr('highPower', 'High Power')}</a></li>
+            <li><a href="/highcomfort">{tr('highComfort', 'High Comfort')}</a></li>
+            <li><a href="/compare">{tr('compareCars', 'Compare Cars')}</a></li>
+            <li><a href="/contact">{tr('contactUs', 'Contact Us')}</a></li>
+            <li><a href="/about">{tr('aboutUs', 'About Us')}</a></li>
           </ul>
         </div>
 
         {/* Social Media */}
         <div className="footer-section">
-          <h3 className="footer-heading">Follow Us</h3>
+          <h3 className="footer-heading">{tr('followUs', 'Follow Us')}</h3>
           <div className="footer-icons">
             <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"><FaFacebookF /></a>
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer"><FaInstagram /></a>
@@ -42,7 +48,7 @@ const Footer = () => {
 
       {/* Bottom Footer */}
       <div className="footer-bottom">
-        &copy; {new Date().getFullYear()} MotoGuide. All rights reserved.
+        &copy; {new Date().getFullYear()} MotoGuide. {tr('allRightsReserved', 'All rights reserved.') }
       </div>
     </footer>
   );

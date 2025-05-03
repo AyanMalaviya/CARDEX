@@ -11,6 +11,10 @@ const Home = () => {
   const [showAllBrands, setShowAllBrands] = useState(false);
   const navigate = useNavigate();
   const { t } = useLanguage();
+  const tr = (key, fallback) => {
+    const value = t(key);
+    return value === key ? fallback : value;
+  };
 
   const handleExploreClick = () => {
     sliderRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -143,10 +147,10 @@ const Home = () => {
       <section className="hero-section">
         <div className="hero-content">
           <div className="hero-text-overlay">
-            <h1 className="hero-title">{t('welcomeTitle')}</h1>
-            <p className="hero-subtitle">{t('welcomeSubtitle')}</p>
+            <h1 className="hero-title">{tr('welcomeTitle', 'WELCOME TO MOTOGUIDE')}</h1>
+            <p className="hero-subtitle">{tr('welcomeSubtitle', 'Where Luxury Meets Speed')}</p>
             <p className="hero-description">
-              {t('welcomeDescription') || "Experience the thrill of the world's most elite automotive machines, designed for performance and elegance."}
+              {tr('welcomeDescription', "Experience the thrill of the world's most elite automotive machines, designed for performance and elegance.")}
             </p>
             <Button 
               variant="contained" 
@@ -154,7 +158,7 @@ const Home = () => {
               onClick={handleExploreClick}
               className="explore-button"
             >
-              {t('exploreCollection') || 'EXPLORE COLLECTION'}
+              {tr('exploreCollection', 'EXPLORE COLLECTION')}
             </Button>
           </div>
         </div>
@@ -162,11 +166,11 @@ const Home = () => {
       {/* CarSlider Section */}
       <section ref={sliderRef} className="slider-section">
         <CarSlider 
-          title={t('supercarCollection')}
+          title={tr('supercarCollection', 'Supercar Collection')}
           images={supercarImages} 
         />
         <CarSlider 
-          title={t('luxuryCollection')}
+          title={tr('luxuryCollection', 'Luxurious Cars Collection')}
           images={luxuryCarImages} 
         />
       </section>
@@ -174,8 +178,8 @@ const Home = () => {
       {/* Shopping by Car Section */}
       <section className="car-brands-section">
         <div className="section-header">
-          <h2>{t('browseByBrands') || 'Browse by brands?'}</h2>
-          <p>{t('chooseABrand') || 'Choose A Brand.'}</p>
+          <h2>{tr('browseByBrands', 'Browse by brands?')}</h2>
+          <p>{tr('chooseABrand', 'Choose A Brand.')}</p>
         </div>
         <div className={`brands-grid ${showAllBrands ? 'show-all' : ''}`}>
           {carBrands.map((brand, index) => (
@@ -194,7 +198,7 @@ const Home = () => {
         </div>
         <div className="view-all-btn-wrapper">
           <button className="view-all" onClick={handleViewAll}>
-            {showAllBrands ? (t('showLess') || 'Show Less') : (t('viewAll') || 'View All')}
+            {showAllBrands ? tr('showLess', 'Show Less') : tr('viewAll', 'View All')}
           </button>
         </div>
       </section>

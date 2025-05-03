@@ -98,7 +98,7 @@ const Navbar = () => {
                 onClick={() => setCarCategoriesOpen(!carCategoriesOpen)}
                 onBlur={() => setTimeout(() => setCarCategoriesOpen(false), 200)}
               >
-                {t('Car Categories')}
+                {t('carCategories')}
               </button>
               <div className="car-categories-menu">
                 <Link
@@ -106,28 +106,28 @@ const Navbar = () => {
                   className="car-categories-option"
                   onClick={() => setCarCategoriesOpen(false)}
                 >
-                  {t('Featured')}
+                  {t('featured')}
                 </Link>
                 <Link
                   to="/highpower"
                   className="car-categories-option"
                   onClick={() => setCarCategoriesOpen(false)}
                 >
-                  {t('High Power')}
+                  {t('highPower')}
                 </Link>
                 <Link
                   to="/highcomfort"
                   className="car-categories-option"
                   onClick={() => setCarCategoriesOpen(false)}
                 >
-                  {t('High Comfort')}
+                  {t('highComfort')}
                 </Link>
                 <Link
                   to="/compare"
                   className="car-categories-option"
                   onClick={() => setCarCategoriesOpen(false)}
                 >
-                  {t('Compare Cars')}
+                  {t('compareCars')}
                 </Link>
               </div>
             </div>
@@ -252,7 +252,7 @@ const Navbar = () => {
           {t('highComfort')}
         </Link>
         <Link to="/compare" className="sidebar-link" onClick={toggleSidebar}>
-          {t('Compare Cars')}
+          {t('compareCars')}
         </Link>
         <Link to="/contact" className="sidebar-link" onClick={toggleSidebar}>
           {t('contactUs')}
