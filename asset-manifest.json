@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/Cardex/static/css/main.94c4a880.css",
-    "main.js": "/Cardex/static/js/main.b1d705a2.js",
-    "static/media/slick.svg": "/Cardex/static/media/slick.2630a3e3eab21c607e21.svg",
-    "static/media/slick.eot": "/Cardex/static/media/slick.a4e97f5a2a64f0ab1323.eot",
-    "static/media/slick.ttf": "/Cardex/static/media/slick.c94f7671dcc99dce43e2.ttf",
-    "static/media/slick.woff": "/Cardex/static/media/slick.295183786cd8a1389865.woff",
-    "index.html": "/Cardex/index.html",
-    "main.94c4a880.css.map": "/Cardex/static/css/main.94c4a880.css.map",
-    "main.b1d705a2.js.map": "/Cardex/static/js/main.b1d705a2.js.map"
+    "main.css": "/CARDEX/static/css/main.663e4706.css",
+    "main.js": "/CARDEX/static/js/main.2b4a7cdc.js",
+    "static/media/slick.svg": "/CARDEX/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/CARDEX/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/CARDEX/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/CARDEX/static/media/slick.295183786cd8a1389865.woff",
+    "index.html": "/CARDEX/index.html",
+    "main.663e4706.css.map": "/CARDEX/static/css/main.663e4706.css.map",
+    "main.2b4a7cdc.js.map": "/CARDEX/static/js/main.2b4a7cdc.js.map"
   },
   "entrypoints": [
-    "static/css/main.94c4a880.css",
-    "static/js/main.b1d705a2.js"
+    "static/css/main.663e4706.css",
+    "static/js/main.2b4a7cdc.js"
   ]
 }
