@@ -19,7 +19,7 @@ function App() {
   return (
     <CarProvider>
       <LanguageProvider>
-        <Router>
+        <Router basename="/CARDEX">
         <div className="app-container">
           <Navbar />
           <main className="main-content">

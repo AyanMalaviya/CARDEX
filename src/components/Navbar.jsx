@@ -37,12 +37,11 @@ const Navbar = () => {
   const handleSearchChange = (e) => {
     const value = e.target.value;
     setSearchQuery(value);
-    // Suggest brands that match the input (case-insensitive)
     if (value.trim().length > 0) {
       const matches = carBrands
-        .map(b => typeof b === 'string' ? b : b.name) // handle array of strings or objects
+        .map(b => typeof b === 'string' ? b : b.name)
         .filter(name => name.toLowerCase().includes(value.toLowerCase()))
-        .slice(0, 5); // limit suggestions
+        .slice(0, 5);
       setSuggestions(matches);
     } else {
       setSuggestions([]);
@@ -79,18 +78,23 @@ const Navbar = () => {
   return (
     <>
       <nav className={`navbar ${darkMode ? 'dark' : 'light'}`}>
-        {/* Fixed brand outside the flex container */}
         <div className="navbar-brand">
           <span className="brand-highlight">Moto</span>Guide
         </div>
-        <div className="navbar-container">
-          {/* Left side - Home always visible */}
+        <button
+          className="sidebar-toggle mobile-only"
+          onClick={toggleSidebar}
+          title={t('toggleSidebar')}
+          aria-label={t('toggleSidebar')}
+        >
+          <FiMenu size={22} />
+        </button>
+        <div className="navbar-container desktop-only">
           <div className="navbar-left navbar-links">
             <Link to="/" className={`nav-link ${isActive('/')}`}>
               {t('home')}
             </Link>
           </div>
-          {/* Car Categories Dropdown */}
           <div className="navbar-categories navbar-links">
             <div className={`car-categories ${carCategoriesOpen ? 'active' : ''}`}>
               <button
@@ -132,13 +136,10 @@ const Navbar = () => {
               </div>
             </div>
           </div>
-
-          {/* Right side - Contact Us, Search, Theme, Sidebar, Logo */}
           <div className="navbar-right navbar-links">
             <Link to="/about" className={`nav-link ${isActive('/about')}`}>
               {t('aboutUs')}
             </Link>
-
             <button
               type="button"
               className="search-icon"
@@ -147,7 +148,6 @@ const Navbar = () => {
             >
               <FiSearch size={22} />
             </button>
-
             {searchActive && (
               <form onSubmit={handleSearchSubmit} className="search-form active" autoComplete="off">
                 <input
@@ -173,7 +173,6 @@ const Navbar = () => {
                 )}
               </form>
             )}
-
             <div className="language-selector">
               <button
                 className="language-toggle"
@@ -200,12 +199,9 @@ const Navbar = () => {
                 </div>
               )}
             </div>
-
             <div className="theme-toggle" onClick={toggleTheme} title={t('toggleTheme')}>
               {darkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
             </div>
-
-            {/* Login/Logout Button as Page Link */}
             {user ? (
               <button
                 className="nav-link login-btn"
@@ -225,41 +221,87 @@ const Navbar = () => {
                 {t('login') || 'Login'}
               </Link>
             )}
-
-            <button
-              className="sidebar-toggle"
-              onClick={toggleSidebar}
-              title={t('toggleSidebar')}
-            >
-              <FiMenu size={22} />
-            </button>
-
           </div>
         </div>
       </nav>
 
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
+        <button className="sidebar-close" onClick={toggleSidebar} aria-label="Close Sidebar">&times;</button>
         <Link to="/" className="sidebar-link" onClick={toggleSidebar}>
           {t('home')}
         </Link>
-        <Link to="/featured" className="sidebar-link" onClick={toggleSidebar}>
-          {t('featured')}
-        </Link>
-        <Link to="/highpower" className="sidebar-link" onClick={toggleSidebar}>
-          {t('highPower')}
-        </Link>
-        <Link to="/highcomfort" className="sidebar-link" onClick={toggleSidebar}>
-          {t('highComfort')}
-        </Link>
-        <Link to="/compare" className="sidebar-link" onClick={toggleSidebar}>
-          {t('compareCars')}
+        <div className="sidebar-categories">
+          <div className="sidebar-link sidebar-categories-title">{t('carCategories')}</div>
+          <Link to="/featured" className="sidebar-link" onClick={toggleSidebar}>
+            {t('featured')}
+          </Link>
+          <Link to="/highpower" className="sidebar-link" onClick={toggleSidebar}>
+            {t('highPower')}
+          </Link>
+          <Link to="/highcomfort" className="sidebar-link" onClick={toggleSidebar}>
+            {t('highComfort')}
+          </Link>
+          <Link to="/compare" className="sidebar-link" onClick={toggleSidebar}>
+            {t('compareCars')}
+          </Link>
+        </div>
+        <Link to="/about" className="sidebar-link" onClick={toggleSidebar}>
+          {t('aboutUs')}
         </Link>
         <Link to="/contact" className="sidebar-link" onClick={toggleSidebar}>
           {t('contactUs')}
         </Link>
-        <Link to="/about" className="sidebar-link" onClick={toggleSidebar}>
-          {t('aboutUs')}
-        </Link>
+        <div className="sidebar-actions">
+          <button
+            className="sidebar-lang-btn"
+            onClick={() => setLanguageMenuOpen(!languageMenuOpen)}
+          >
+            <FiGlobe size={22} /> {t('changeLanguage')}
+          </button>
+          {languageMenuOpen && (
+            <div className="language-menu">
+              {languages.map((lang) => (
+                <button
+                  key={lang.code}
+                  className={`language-option ${lang.code === currentLanguage.code ? 'active' : ''}`}
+                  onClick={() => {
+                    changeLanguage(lang.code);
+                    setLanguageMenuOpen(false);
+                    setSidebarOpen(false);
+                  }}
+                >
+                  {lang.name}
+                </button>
+              ))}
+            </div>
+          )}
+          <div className="sidebar-theme-toggle" onClick={toggleTheme} title={t('toggleTheme')}>
+            {darkMode ? <FiSun size={22} /> : <FiMoon size={22} />}
+          </div>
+          {user ? (
+            <button
+              className="nav-link login-btn"
+              onClick={() => {
+                handleLogout();
+                setSidebarOpen(false);
+              }}
+              style={{ marginLeft: '10px' }}
+              title={t('logout') || 'Logout'}
+            >
+              {t('logout') || 'Logout'}
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="nav-link login-btn"
+              style={{ marginLeft: '10px' }}
+              title={t('login') || 'Login'}
+              onClick={() => setSidebarOpen(false)}
+            >
+              {t('login') || 'Login'}
+            </Link>
+          )}
+        </div>
       </div>
     </>
   );
