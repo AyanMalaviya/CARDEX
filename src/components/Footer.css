@@ -37,19 +37,20 @@
   }
   
   .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     list-style: none;
     padding: 0;
     margin: 0;
   }
   
-  .footer-links li {
-    margin-bottom: 10px;
-  }
-  
   .footer-links a {
+    display: block;
     color: #ccc;
     text-decoration: none;
     transition: color 0.3s ease;
+    padding: 2px 0;
   }
   
   .footer-links a:hover {
@@ -79,4 +80,3 @@
     border-top: 1px solid #333;
     margin-top: 30px;
   }
-  

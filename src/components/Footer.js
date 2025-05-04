@@ -2,6 +2,7 @@ import React from "react";
 import './Footer.css';
 import { FaFacebookF, FaInstagram, FaTwitter, FaEnvelope } from "react-icons/fa";
 import { useLanguage } from '../context/LanguageContext';
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t } = useLanguage();
@@ -24,14 +25,26 @@ const Footer = () => {
         {/* Quick Links */}
         <div className="footer-section">
           <h3 className="footer-heading">{tr('quickLinks', 'Quick Links')}</h3>
-          <ul className="footer-links">
-            <li><a href="/featured">{tr('featured', 'Featured')}</a></li>
-            <li><a href="/highpower">{tr('highPower', 'High Power')}</a></li>
-            <li><a href="/highcomfort">{tr('highComfort', 'High Comfort')}</a></li>
-            <li><a href="/compare">{tr('compareCars', 'Compare Cars')}</a></li>
-            <li><a href="/contact">{tr('contactUs', 'Contact Us')}</a></li>
-            <li><a href="/about">{tr('aboutUs', 'About Us')}</a></li>
-          </ul>
+          <div className="footer-links">
+            <Link to="/featured" className="footer-links">
+              {t('featured')}
+            </Link>
+            <Link to="/highpower" className="footer-links">
+              {t('highPower')}
+            </Link>
+            <Link to="/highcomfort" className="footer-links">
+              {t('highComfort')}
+            </Link>
+            <Link to="/compare" className="footer-links">
+              {t('compareCars')}
+            </Link>
+            <Link to="/about" className="footer-links">
+              {t('aboutUs')}
+            </Link>
+            <Link to="/contact" className="footer-links">
+              {t('contactUs')}
+            </Link>
+          </div>
         </div>
 
         {/* Social Media */}

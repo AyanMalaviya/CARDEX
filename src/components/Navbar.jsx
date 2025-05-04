@@ -81,14 +81,6 @@ const Navbar = () => {
         <div className="navbar-brand">
           <span className="brand-highlight">Moto</span>Guide
         </div>
-        <button
-          className="sidebar-toggle mobile-only"
-          onClick={toggleSidebar}
-          title={t('toggleSidebar')}
-          aria-label={t('toggleSidebar')}
-        >
-          <FiMenu size={22} />
-        </button>
         <div className="navbar-container desktop-only">
           <div className="navbar-left navbar-links">
             <Link to="/" className={`nav-link ${isActive('/')}`}>
@@ -223,6 +215,14 @@ const Navbar = () => {
             )}
           </div>
         </div>
+        <button
+          className="sidebar-toggle mobile-only"
+          onClick={toggleSidebar}
+          title={t('toggleSidebar')}
+          aria-label={t('toggleSidebar')}
+        >
+          <FiMenu size={22} />
+        </button>
       </nav>
 
       <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
